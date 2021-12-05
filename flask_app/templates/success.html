@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Validated Emails</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col"></div>
+            <div class="col-7">
+                <div class="row p-3 bg-dark text-white d-flex justify-content-center">
+                    <div class="row bg-success text-white text-center p-1 m-2 mb-4">
+                        <p class="m-1">{{ session.email }} is a valid email address.<br>Thank you.</p>
+                    </div>
+                    <div class="row">
+                        <h3>Email addresses entered:</h3>
+                    </div>
+                    <div class="row">
+                        <table class="table table-light">
+                            {% for email in emails %}
+                            <tr>
+                                <td>{{ email.email }} </td>
+                                <td>{{ email.created_at }} </td>
+                                <td><a href="/delete/{{ email.id }}">Delete</a> </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</body>
+</html>
